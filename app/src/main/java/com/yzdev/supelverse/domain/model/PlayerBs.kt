@@ -1,7 +1,6 @@
 package com.yzdev.supelverse.domain.model
 
-import com.google.gson.annotations.SerializedName
-import com.yzdev.supelverse.data.remote.dto.PlayerDto
+import com.yzdev.supelverse.data.remote.dto.PlayerBsDto
 
 data class PlayerBs(
     val threeVictory: Int,
@@ -60,7 +59,7 @@ data class PlayerBs(
     )
 }
 
-fun PlayerDto.toPlayerBs(): PlayerBs{
+fun PlayerBsDto.toPlayerBs(): PlayerBs{
     return PlayerBs(
         threeVictory = threeVictory,
         bestRoboRumbleTime = bestRoboRumbleTime,
@@ -83,7 +82,7 @@ fun PlayerDto.toPlayerBs(): PlayerBs{
 }
 
 /** Cast Brawlers ******************************************************************/
-fun List<PlayerDto.Brawler>.toPlayerBsBrawlers(): List<PlayerBs.Brawler>{
+private fun List<PlayerBsDto.Brawler>.toPlayerBsBrawlers(): List<PlayerBs.Brawler>{
     return this.map {
         PlayerBs.Brawler(
             gadgets = it.gadgets.toPlayerBsBrawlersGadgets(),
@@ -99,7 +98,7 @@ fun List<PlayerDto.Brawler>.toPlayerBsBrawlers(): List<PlayerBs.Brawler>{
     }
 }
 
-fun List<PlayerDto.Brawler.Gadget>.toPlayerBsBrawlersGadgets(): List<PlayerBs.Brawler.Gadget>{
+private fun List<PlayerBsDto.Brawler.Gadget>.toPlayerBsBrawlersGadgets(): List<PlayerBs.Brawler.Gadget>{
     return this.map {
         PlayerBs.Brawler.Gadget(
             id = it.id,
@@ -108,7 +107,7 @@ fun List<PlayerDto.Brawler.Gadget>.toPlayerBsBrawlersGadgets(): List<PlayerBs.Br
     }
 }
 
-fun List<PlayerDto.Brawler.Gear>.toPlayerBsBrawlersGears(): List<PlayerBs.Brawler.Gear>{
+private fun List<PlayerBsDto.Brawler.Gear>.toPlayerBsBrawlersGears(): List<PlayerBs.Brawler.Gear>{
     return this.map {
         PlayerBs.Brawler.Gear(
             id = it.id,
@@ -118,7 +117,7 @@ fun List<PlayerDto.Brawler.Gear>.toPlayerBsBrawlersGears(): List<PlayerBs.Brawle
     }
 }
 
-fun List<PlayerDto.Brawler.StarPower>.toPlayerBsBrawlersStarPowers(): List<PlayerBs.Brawler.StarPower>{
+private fun List<PlayerBsDto.Brawler.StarPower>.toPlayerBsBrawlersStarPowers(): List<PlayerBs.Brawler.StarPower>{
     return this.map {
         PlayerBs.Brawler.StarPower(
             id = it.id,
@@ -130,7 +129,7 @@ fun List<PlayerDto.Brawler.StarPower>.toPlayerBsBrawlersStarPowers(): List<Playe
 /*********************************************************************************************************/
 
 /** Cast Club *********************************************************************************************/
-fun PlayerDto.Club.toPlayerBsClub(): PlayerBs.Club{
+private fun PlayerBsDto.Club.toPlayerBsClub(): PlayerBs.Club{
     return PlayerBs.Club(
         name = name,
         tag = tag
@@ -140,7 +139,7 @@ fun PlayerDto.Club.toPlayerBsClub(): PlayerBs.Club{
 /************************************************************************************************************/
 
 /** Cast Icon ************************************************************************************************/
-fun PlayerDto.Icon.toPlayerBsIcon(): PlayerBs.Icon{
+private fun PlayerBsDto.Icon.toPlayerBsIcon(): PlayerBs.Icon{
     return PlayerBs.Icon(
         id = id
     )

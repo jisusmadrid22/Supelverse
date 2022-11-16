@@ -2,7 +2,7 @@ package com.yzdev.supelverse.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class PlayerDto(
+data class PlayerBsDto(
     @SerializedName("3vs3Victories") val threeVictory: Int,
     val bestRoboRumbleTime: Int,
     val bestTimeAsBigBrawler: Int,
