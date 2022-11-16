@@ -1,4 +1,4 @@
-package com.yzdev.supelverse.ui.theme
+package com.yzdev.supelverse.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,4 +1,4 @@
-package com.yzdev.supelverse.ui.theme
+package com.yzdev.supelverse.presentation.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
