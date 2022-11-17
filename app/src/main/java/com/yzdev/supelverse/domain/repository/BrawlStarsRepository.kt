@@ -1,8 +1,10 @@
 package com.yzdev.supelverse.domain.repository
 
+import com.yzdev.supelverse.data.remote.dto.PlayerBattleLogBsDto
 import com.yzdev.supelverse.data.remote.dto.PlayerBsDto
+import com.yzdev.supelverse.domain.model.PlayerBattleLogBs
 
-interface BsRepository {
+interface BrawlStarsRepository {
 
     //---------------------------------- API ----------------------------------------------
     /** Get player info from brawl stars api
@@ -13,7 +15,7 @@ interface BsRepository {
     /** Get player battle log from brawl stars api
      * @param playerTag is tag associated in profile
      * */
-    suspend fun getPlayerBattleLog(playerTag: String): PlayerBsDto
+    suspend fun getPlayerBattleLog(playerTag: String): PlayerBattleLogBsDto
 
     //-------------------------------------------------------------------------------------
 
