@@ -5,7 +5,7 @@ import com.yzdev.supelverse.data.remote.dto.PlayerBsDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface BrawlStarsApi {
+interface SupelverseApi {
 
     /** Get player info by tag in brawl stars api
      * @param playerTag is tag associated to player profile
