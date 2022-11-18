@@ -10,12 +10,12 @@ interface SupelverseApi {
     /** Get player info by tag in brawl stars api
      * @param playerTag is tag associated to player profile
      * */
-    @GET("/players/{playerTag}")
+    @GET("players/{playerTag}")
     suspend fun getPlayerBs(@Path("playerTag") playerTag: String): PlayerBsDto
 
     /** Get player battle log in brawl stars api
      * @param playerTag is tag associated to player profile
      * */
-    @GET("/players/{playerTag}/battlelog")
+    @GET("players/{playerTag}/battlelog")
     suspend fun getPlayerBattleLog(@Path("playerTag") playerTag: String): PlayerBattleLogBsDto
 }
