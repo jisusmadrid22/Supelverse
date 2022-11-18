@@ -21,13 +21,7 @@ class RegisterTagViewModel @Inject constructor(
     private val _state = mutableStateOf(PlayerInfoBsState())
     val state: State<PlayerInfoBsState> = _state
 
-    init {
-        viewModelScope.launch {
-            getInfoPlayerBs()
-        }
-    }
-
-    private fun getInfoPlayerBs(playerTag: String = "#j0vg8qg"){
+    suspend fun getInfoPlayerBs(playerTag: String){
         getPlayerBsInfoUseCase(playerTag).onEach { result->
             when(result){
                 is Resource.Error -> {
