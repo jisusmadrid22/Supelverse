@@ -1,4 +1,4 @@
-package com.yzdev.supelverse.data.remote.dto
+package com.yzdev.supelverse.data.remote.dto.brawl_stars
 
 data class PlayerBattleLogBsDto(
     val items: List<Item>,

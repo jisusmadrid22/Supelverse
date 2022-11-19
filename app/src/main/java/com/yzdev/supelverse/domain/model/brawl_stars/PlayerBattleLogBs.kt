@@ -1,6 +1,6 @@
-package com.yzdev.supelverse.domain.model
+package com.yzdev.supelverse.domain.model.brawl_stars
 
-import com.yzdev.supelverse.data.remote.dto.PlayerBattleLogBsDto
+import com.yzdev.supelverse.data.remote.dto.brawl_stars.PlayerBattleLogBsDto
 
 data class PlayerBattleLogBs(
     val items: List<Item>

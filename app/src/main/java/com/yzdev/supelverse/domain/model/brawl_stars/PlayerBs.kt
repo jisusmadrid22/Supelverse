@@ -1,6 +1,6 @@
-package com.yzdev.supelverse.domain.model
+package com.yzdev.supelverse.domain.model.brawl_stars
 
-import com.yzdev.supelverse.data.remote.dto.PlayerBsDto
+import com.yzdev.supelverse.data.remote.dto.brawl_stars.PlayerBsDto
 
 data class PlayerBs(
     val threeVictory: Int,

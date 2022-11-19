@@ -1,4 +1,4 @@
-package com.yzdev.supelverse.data.remote.dto
+package com.yzdev.supelverse.data.remote.dto.brawl_stars
 
 import com.google.gson.annotations.SerializedName
 

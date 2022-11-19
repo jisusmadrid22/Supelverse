@@ -1,11 +1,11 @@
 package com.yzdev.supelverse.di
 
 import com.yzdev.supelverse.common.Constants
-import com.yzdev.supelverse.common.Constants.BASE_URL
-import com.yzdev.supelverse.data.remote.InterceptorClient
-import com.yzdev.supelverse.data.remote.SupelverseApi
+import com.yzdev.supelverse.data.remote.*
 import com.yzdev.supelverse.data.repository.BrawlStarsRepositoryImp
+import com.yzdev.supelverse.data.repository.ClashOfClansRepositoryImp
 import com.yzdev.supelverse.domain.repository.BrawlStarsRepository
+import com.yzdev.supelverse.domain.repository.ClashOfClansRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,26 +23,61 @@ object AppModule {
     @Singleton
     @Provides
     @Named("BaseUrl")
-    fun provideBaseUrl() = Constants.BASE_URL
+    fun provideBaseUrlBs() = Constants.BASE_URL_BS
+
+    @Singleton
+    @Provides
+    @Named("BaseUrlCoc")
+    fun provideBaseUrlCoc() = Constants.BASE_URL_COC
+
+    @Singleton
+    @Provides
+    @Named("BaseUrlCr")
+    fun provideBaseUrlCr() = Constants.BASE_URL_CR
 
     private val client = OkHttpClient.Builder().apply {
         addInterceptor(InterceptorClient())
     }.build()
 
+    private val clientCr = OkHttpClient.Builder().apply {
+        addInterceptor(InterceptorClientCr())
+    }.build()
+
+    private val clientCoc = OkHttpClient.Builder().apply {
+        addInterceptor(InterceptorClientCoc())
+    }.build()
+
     @Provides
     @Singleton
-    fun provideSupelverseApi(@Named("BaseUrl") baseUrl: String): SupelverseApi{
+    fun provideBrawlStarsApi(@Named("BaseUrl") baseUrl: String): BrawlStarsApi{
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(SupelverseApi::class.java)
+            .create(BrawlStarsApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideBrawlStarsRepository(api: SupelverseApi): BrawlStarsRepository{
+    fun provideCocApi(@Named("BaseUrlCoc") baseUrl: String): ClashOfClansApi{
+        return Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .client(clientCoc)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ClashOfClansApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideBrawlStarsRepository(api: BrawlStarsApi): BrawlStarsRepository{
         return BrawlStarsRepositoryImp(api)
+    }
+
+    @Provides
+    @Singleton
+    fun provideClashOfClansRepository(api: ClashOfClansApi): ClashOfClansRepository{
+        return ClashOfClansRepositoryImp(api)
     }
 }

@@ -1,10 +1,8 @@
-package com.yzdev.supelverse.domain.use_case.get_player_battle_log
+package com.yzdev.supelverse.domain.use_case.brawl_stars.get_player_info
 
 import com.yzdev.supelverse.common.Resource
-import com.yzdev.supelverse.domain.model.PlayerBattleLogBs
-import com.yzdev.supelverse.domain.model.PlayerBs
-import com.yzdev.supelverse.domain.model.toPlayerBattleLogBs
-import com.yzdev.supelverse.domain.model.toPlayerBs
+import com.yzdev.supelverse.domain.model.brawl_stars.PlayerBs
+import com.yzdev.supelverse.domain.model.brawl_stars.toPlayerBs
 import com.yzdev.supelverse.domain.repository.BrawlStarsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -12,13 +10,13 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetPlayerBsBattleLogUseCase @Inject constructor(
+class GetPlayerBsInfoUseCase @Inject constructor(
     private val repository: BrawlStarsRepository
 ) {
-    operator fun invoke(playerTag: String): Flow<Resource<PlayerBattleLogBs>> = flow {
+    operator fun invoke(playerTag: String): Flow<Resource<PlayerBs>> = flow {
         try {
             emit(Resource.Loading())
-            val playerInfo = repository.getPlayerBattleLog(playerTag).toPlayerBattleLogBs()
+            val playerInfo = repository.getPlayerByTag(playerTag).toPlayerBs()
             emit(Resource.Success(playerInfo))
 
         } catch (e: HttpException){
